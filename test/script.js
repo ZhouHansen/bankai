@@ -266,6 +266,8 @@ tape('envify in watch mode', function (assert) {
 })
 
 tape('nonstandard syntax using babel', function (assert) {
+  assert.plan(2)
+
   var babelrc = JSON.stringify({
     presets: ['react']
   })
@@ -287,7 +289,6 @@ tape('nonstandard syntax using babel', function (assert) {
   compiler.on('error', assert.error)
   compiler.scripts('bundle.js', function (err, res) {
     assert.error(err, 'error building .babelrc dependency')
-    console.error(res.buffer + '')
     assert.pass('should build')
   })
 })
